@@ -5737,6 +5737,7 @@ arch/x86/include/asm/cmpxchg_64.h
 arch/x86/include/asm/compat.h
 arch/x86/include/asm/cpu.h
 arch/x86/include/asm/cpu_device_id.h
+arch/x86/include/asm/cpu_entry_area.h
 arch/x86/include/asm/cpufeature.h
 arch/x86/include/asm/cpufeatures.h
 arch/x86/include/asm/cpumask.h
@@ -5811,6 +5812,7 @@ arch/x86/include/asm/intel_punit_ipc.h
 arch/x86/include/asm/intel_rdt_sched.h
 arch/x86/include/asm/intel_scu_ipc.h
 arch/x86/include/asm/intel_telemetry.h
+arch/x86/include/asm/invpcid.h
 arch/x86/include/asm/io.h
 arch/x86/include/asm/io_apic.h
 arch/x86/include/asm/iomap.h
