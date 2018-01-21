@@ -22865,6 +22865,7 @@ include/linux/input-polldev.h
 include/linux/input.h
 include/linux/integrity.h
 include/linux/intel-iommu.h
+include/linux/intel-pti.h
 include/linux/intel-svm.h
 include/linux/interrupt.h
 include/linux/interval_tree.h
@@ -23872,7 +23873,6 @@ include/linux/property.h
 include/linux/psci.h
 include/linux/pstore.h
 include/linux/pstore_ram.h
-include/linux/pti.h
 include/linux/ptp_classify.h
 include/linux/ptp_clock_kernel.h
 include/linux/ptr_ring.h
@@ -27337,6 +27337,7 @@ tools/include/tools/be_byteshift.h
 tools/include/tools/endian.h
 tools/include/tools/le_byteshift.h
 tools/include/trace/events/lock.h
+tools/include/uapi/asm/bpf_perf_event.h
 tools/include/uapi/asm-generic/bitsperlong.h
 tools/include/uapi/asm-generic/bpf_perf_event.h
 tools/include/uapi/asm-generic/fcntl.h
