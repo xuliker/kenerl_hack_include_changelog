@@ -4450,7 +4450,6 @@ arch/riscv/include/asm/tlb.h
 arch/riscv/include/asm/tlbflush.h
 arch/riscv/include/asm/uaccess.h
 arch/riscv/include/asm/unistd.h
-arch/riscv/include/asm/vdso-syscalls.h
 arch/riscv/include/asm/vdso.h
 arch/riscv/include/asm/word-at-a-time.h
 arch/riscv/include/uapi/asm/auxvec.h
@@ -4461,6 +4460,7 @@ arch/riscv/include/uapi/asm/hwcap.h
 arch/riscv/include/uapi/asm/ptrace.h
 arch/riscv/include/uapi/asm/sigcontext.h
 arch/riscv/include/uapi/asm/siginfo.h
+arch/riscv/include/uapi/asm/syscalls.h
 arch/riscv/include/uapi/asm/ucontext.h
 arch/s390/appldata/appldata.h
 arch/s390/crypto/sha.h
@@ -5880,6 +5880,7 @@ arch/x86/include/asm/mtrr.h
 arch/x86/include/asm/mwait.h
 arch/x86/include/asm/nmi.h
 arch/x86/include/asm/nops.h
+arch/x86/include/asm/nospec-branch.h
 arch/x86/include/asm/numa.h
 arch/x86/include/asm/numa_32.h
 arch/x86/include/asm/numachip/numachip.h
