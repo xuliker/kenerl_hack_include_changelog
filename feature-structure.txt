@@ -4448,6 +4448,7 @@ arch/riscv/include/asm/tlb.h
 arch/riscv/include/asm/tlbflush.h
 arch/riscv/include/asm/uaccess.h
 arch/riscv/include/asm/unistd.h
+arch/riscv/include/asm/vdso-syscalls.h
 arch/riscv/include/asm/vdso.h
 arch/riscv/include/asm/word-at-a-time.h
 arch/riscv/include/uapi/asm/auxvec.h
@@ -22262,7 +22263,6 @@ include/kvm/arm_arch_timer.h
 include/kvm/arm_pmu.h
 include/kvm/arm_vgic.h
 include/kvm/iodev.h
-include/lib/libgcc.h
 include/linux/8250_pci.h
 include/linux/a.out.h
 include/linux/acct.h
@@ -23012,6 +23012,7 @@ include/linux/leds_pwm.h
 include/linux/libata.h
 include/linux/libfdt.h
 include/linux/libfdt_env.h
+include/linux/libgcc.h
 include/linux/libnvdimm.h
 include/linux/libps2.h
 include/linux/license.h
