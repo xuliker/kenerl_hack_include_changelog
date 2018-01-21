@@ -5805,6 +5805,7 @@ arch/x86/include/asm/insn.h
 arch/x86/include/asm/inst.h
 arch/x86/include/asm/intel-family.h
 arch/x86/include/asm/intel-mid.h
+arch/x86/include/asm/intel_ds.h
 arch/x86/include/asm/intel_mid_vrtc.h
 arch/x86/include/asm/intel_pmc_ipc.h
 arch/x86/include/asm/intel_pt.h
@@ -5928,6 +5929,7 @@ arch/x86/include/asm/processor-flags.h
 arch/x86/include/asm/processor.h
 arch/x86/include/asm/prom.h
 arch/x86/include/asm/proto.h
+arch/x86/include/asm/pti.h
 arch/x86/include/asm/ptrace.h
 arch/x86/include/asm/purgatory.h
 arch/x86/include/asm/pvclock-abi.h
@@ -23875,6 +23877,7 @@ include/linux/property.h
 include/linux/psci.h
 include/linux/pstore.h
 include/linux/pstore_ram.h
+include/linux/pti.h
 include/linux/ptp_classify.h
 include/linux/ptp_clock_kernel.h
 include/linux/ptr_ring.h
@@ -27229,6 +27232,7 @@ tools/arch/s390/include/uapi/asm/bpf_perf_event.h
 tools/arch/s390/include/uapi/asm/kvm.h
 tools/arch/s390/include/uapi/asm/kvm_perf.h
 tools/arch/s390/include/uapi/asm/mman.h
+tools/arch/s390/include/uapi/asm/perf_regs.h
 tools/arch/s390/include/uapi/asm/ptrace.h
 tools/arch/s390/include/uapi/asm/sie.h
 tools/arch/score/include/uapi/asm/bitsperlong.h
