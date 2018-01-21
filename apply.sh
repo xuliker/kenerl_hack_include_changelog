@@ -20,7 +20,7 @@ do
         /usr/local/opt/coreutils/libexec/gnubin/cp --parents ${var} $CICD/
     else
         echo "update ${var}"
-        /usr/local/opt/coreutils/libexec/gnubin/cp $CICD/${var} $SRC/${var}
+        /usr/local/opt/coreutils/libexec/gnubin/cp $SRC/${var} $CICD/${var} 
     fi
 done
 cd $CICD
