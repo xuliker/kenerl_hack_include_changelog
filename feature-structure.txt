@@ -1283,7 +1283,6 @@ arch/arm64/include/asm/xen/page.h
 arch/arm64/include/asm/xen/xen-ops.h
 arch/arm64/include/uapi/asm/auxvec.h
 arch/arm64/include/uapi/asm/bitsperlong.h
-arch/arm64/include/uapi/asm/bpf_perf_event.h
 arch/arm64/include/uapi/asm/byteorder.h
 arch/arm64/include/uapi/asm/fcntl.h
 arch/arm64/include/uapi/asm/hwcap.h
@@ -3342,7 +3341,6 @@ arch/mips/include/asm/reg.h
 arch/mips/include/asm/regdef.h
 arch/mips/include/asm/rtlx.h
 arch/mips/include/asm/seccomp.h
-arch/mips/include/asm/serial.h
 arch/mips/include/asm/setup.h
 arch/mips/include/asm/sgi/gio.h
 arch/mips/include/asm/sgi/hpc3.h
@@ -4460,7 +4458,6 @@ arch/riscv/include/uapi/asm/hwcap.h
 arch/riscv/include/uapi/asm/ptrace.h
 arch/riscv/include/uapi/asm/sigcontext.h
 arch/riscv/include/uapi/asm/siginfo.h
-arch/riscv/include/uapi/asm/syscalls.h
 arch/riscv/include/uapi/asm/ucontext.h
 arch/s390/appldata/appldata.h
 arch/s390/crypto/sha.h
@@ -4604,7 +4601,6 @@ arch/s390/include/asm/vx-insn.h
 arch/s390/include/asm/xor.h
 arch/s390/include/uapi/asm/auxvec.h
 arch/s390/include/uapi/asm/bitsperlong.h
-arch/s390/include/uapi/asm/bpf_perf_event.h
 arch/s390/include/uapi/asm/byteorder.h
 arch/s390/include/uapi/asm/chpid.h
 arch/s390/include/uapi/asm/chsc.h
@@ -5737,7 +5733,6 @@ arch/x86/include/asm/cmpxchg_64.h
 arch/x86/include/asm/compat.h
 arch/x86/include/asm/cpu.h
 arch/x86/include/asm/cpu_device_id.h
-arch/x86/include/asm/cpu_entry_area.h
 arch/x86/include/asm/cpufeature.h
 arch/x86/include/asm/cpufeatures.h
 arch/x86/include/asm/cpumask.h
@@ -5805,7 +5800,6 @@ arch/x86/include/asm/insn.h
 arch/x86/include/asm/inst.h
 arch/x86/include/asm/intel-family.h
 arch/x86/include/asm/intel-mid.h
-arch/x86/include/asm/intel_ds.h
 arch/x86/include/asm/intel_mid_vrtc.h
 arch/x86/include/asm/intel_pmc_ipc.h
 arch/x86/include/asm/intel_pt.h
@@ -5813,7 +5807,6 @@ arch/x86/include/asm/intel_punit_ipc.h
 arch/x86/include/asm/intel_rdt_sched.h
 arch/x86/include/asm/intel_scu_ipc.h
 arch/x86/include/asm/intel_telemetry.h
-arch/x86/include/asm/invpcid.h
 arch/x86/include/asm/io.h
 arch/x86/include/asm/io_apic.h
 arch/x86/include/asm/iomap.h
@@ -5838,6 +5831,7 @@ arch/x86/include/asm/kexec-bzimage64.h
 arch/x86/include/asm/kexec.h
 arch/x86/include/asm/kgdb.h
 arch/x86/include/asm/kmap_types.h
+arch/x86/include/asm/kmemcheck.h
 arch/x86/include/asm/kprobes.h
 arch/x86/include/asm/kvm_emulate.h
 arch/x86/include/asm/kvm_guest.h
@@ -5880,7 +5874,6 @@ arch/x86/include/asm/mtrr.h
 arch/x86/include/asm/mwait.h
 arch/x86/include/asm/nmi.h
 arch/x86/include/asm/nops.h
-arch/x86/include/asm/nospec-branch.h
 arch/x86/include/asm/numa.h
 arch/x86/include/asm/numa_32.h
 arch/x86/include/asm/numachip/numachip.h
@@ -5930,7 +5923,6 @@ arch/x86/include/asm/processor-flags.h
 arch/x86/include/asm/processor.h
 arch/x86/include/asm/prom.h
 arch/x86/include/asm/proto.h
-arch/x86/include/asm/pti.h
 arch/x86/include/asm/ptrace.h
 arch/x86/include/asm/purgatory.h
 arch/x86/include/asm/pvclock-abi.h
@@ -6150,6 +6142,11 @@ arch/x86/math-emu/poly.h
 arch/x86/math-emu/reg_constant.h
 arch/x86/math-emu/status_w.h
 arch/x86/math-emu/version.h
+arch/x86/mm/kmemcheck/error.h
+arch/x86/mm/kmemcheck/opcode.h
+arch/x86/mm/kmemcheck/pte.h
+arch/x86/mm/kmemcheck/selftest.h
+arch/x86/mm/kmemcheck/shadow.h
 arch/x86/mm/mm_internal.h
 arch/x86/mm/numa_internal.h
 arch/x86/mm/pat_internal.h
@@ -22265,6 +22262,7 @@ include/kvm/arm_arch_timer.h
 include/kvm/arm_pmu.h
 include/kvm/arm_vgic.h
 include/kvm/iodev.h
+include/lib/libgcc.h
 include/linux/8250_pci.h
 include/linux/a.out.h
 include/linux/acct.h
@@ -22870,7 +22868,6 @@ include/linux/input-polldev.h
 include/linux/input.h
 include/linux/integrity.h
 include/linux/intel-iommu.h
-include/linux/intel-pti.h
 include/linux/intel-svm.h
 include/linux/interrupt.h
 include/linux/interval_tree.h
@@ -22978,6 +22975,7 @@ include/linux/kfifo.h
 include/linux/kgdb.h
 include/linux/khugepaged.h
 include/linux/klist.h
+include/linux/kmemcheck.h
 include/linux/kmemleak.h
 include/linux/kmod.h
 include/linux/kmsg_dump.h
@@ -23014,7 +23012,6 @@ include/linux/leds_pwm.h
 include/linux/libata.h
 include/linux/libfdt.h
 include/linux/libfdt_env.h
-include/linux/libgcc.h
 include/linux/libnvdimm.h
 include/linux/libps2.h
 include/linux/license.h
@@ -25332,7 +25329,6 @@ include/trace/syscall.h
 include/trace/trace_events.h
 include/uapi/asm-generic/auxvec.h
 include/uapi/asm-generic/bitsperlong.h
-include/uapi/asm-generic/bpf_perf_event.h
 include/uapi/asm-generic/errno-base.h
 include/uapi/asm-generic/errno.h
 include/uapi/asm-generic/fcntl.h
@@ -27197,7 +27193,6 @@ tools/arch/arm/include/uapi/asm/mman.h
 tools/arch/arm/include/uapi/asm/perf_regs.h
 tools/arch/arm64/include/asm/barrier.h
 tools/arch/arm64/include/uapi/asm/bitsperlong.h
-tools/arch/arm64/include/uapi/asm/bpf_perf_event.h
 tools/arch/arm64/include/uapi/asm/kvm.h
 tools/arch/arm64/include/uapi/asm/mman.h
 tools/arch/arm64/include/uapi/asm/perf_regs.h
@@ -27229,12 +27224,9 @@ tools/arch/powerpc/include/uapi/asm/mman.h
 tools/arch/powerpc/include/uapi/asm/perf_regs.h
 tools/arch/s390/include/asm/barrier.h
 tools/arch/s390/include/uapi/asm/bitsperlong.h
-tools/arch/s390/include/uapi/asm/bpf_perf_event.h
 tools/arch/s390/include/uapi/asm/kvm.h
 tools/arch/s390/include/uapi/asm/kvm_perf.h
 tools/arch/s390/include/uapi/asm/mman.h
-tools/arch/s390/include/uapi/asm/perf_regs.h
-tools/arch/s390/include/uapi/asm/ptrace.h
 tools/arch/s390/include/uapi/asm/sie.h
 tools/arch/score/include/uapi/asm/bitsperlong.h
 tools/arch/score/include/uapi/asm/mman.h
@@ -27317,6 +27309,7 @@ tools/include/linux/jhash.h
 tools/include/linux/kallsyms.h
 tools/include/linux/kern_levels.h
 tools/include/linux/kernel.h
+tools/include/linux/kmemcheck.h
 tools/include/linux/linkage.h
 tools/include/linux/list.h
 tools/include/linux/lockdep.h
@@ -27344,9 +27337,7 @@ tools/include/tools/be_byteshift.h
 tools/include/tools/endian.h
 tools/include/tools/le_byteshift.h
 tools/include/trace/events/lock.h
-tools/include/uapi/asm/bpf_perf_event.h
 tools/include/uapi/asm-generic/bitsperlong.h
-tools/include/uapi/asm-generic/bpf_perf_event.h
 tools/include/uapi/asm-generic/fcntl.h
 tools/include/uapi/asm-generic/ioctls.h
 tools/include/uapi/asm-generic/mman-common.h

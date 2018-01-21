@@ -20,6 +20,8 @@
 
 #ifndef __ASSEMBLY__
 
+#ifdef CONFIG_MMU
+
 /* Page Upper Directory not used in RISC-V */
 #include <asm-generic/pgtable-nopud.h>
 #include <asm/page.h>
@@ -176,6 +178,28 @@ static inline pte_t *pte_offset_kernel(pmd_t *pmd, unsigned long addr)
 #define pte_offset_map(dir, addr)	pte_offset_kernel((dir), (addr))
 #define pte_unmap(pte)			((void)(pte))
 
+/*
+ * Certain architectures need to do special things when PTEs within
+ * a page table are directly modified.  Thus, the following hook is
+ * made available.
+ */
+static inline void set_pte(pte_t *ptep, pte_t pteval)
+{
+	*ptep = pteval;
+}
+
+static inline void set_pte_at(struct mm_struct *mm,
+	unsigned long addr, pte_t *ptep, pte_t pteval)
+{
+	set_pte(ptep, pteval);
+}
+
+static inline void pte_clear(struct mm_struct *mm,
+	unsigned long addr, pte_t *ptep)
+{
+	set_pte_at(mm, addr, ptep, __pte(0));
+}
+
 static inline int pte_present(pte_t pte)
 {
 	return (pte_val(pte) & _PAGE_PRESENT);
@@ -186,14 +210,11 @@ static inline int pte_none(pte_t pte)
 	return (pte_val(pte) == 0);
 }
 
+/* static inline int pte_read(pte_t pte) */
+
 static inline int pte_write(pte_t pte)
 {
 	return pte_val(pte) & _PAGE_WRITE;
-}
-
-static inline int pte_exec(pte_t pte)
-{
-	return pte_val(pte) & _PAGE_EXEC;
 }
 
 static inline int pte_huge(pte_t pte)
@@ -201,6 +222,8 @@ static inline int pte_huge(pte_t pte)
 	return pte_present(pte)
 		&& (pte_val(pte) & (_PAGE_READ | _PAGE_WRITE | _PAGE_EXEC));
 }
+
+/* static inline int pte_exec(pte_t pte) */
 
 static inline int pte_dirty(pte_t pte)
 {
@@ -286,33 +309,6 @@ static inline void update_mmu_cache(struct vm_area_struct *vma,
 static inline int pte_same(pte_t pte_a, pte_t pte_b)
 {
 	return pte_val(pte_a) == pte_val(pte_b);
-}
-
-/*
- * Certain architectures need to do special things when PTEs within
- * a page table are directly modified.  Thus, the following hook is
- * made available.
- */
-static inline void set_pte(pte_t *ptep, pte_t pteval)
-{
-	*ptep = pteval;
-}
-
-void flush_icache_pte(pte_t pte);
-
-static inline void set_pte_at(struct mm_struct *mm,
-	unsigned long addr, pte_t *ptep, pte_t pteval)
-{
-	if (pte_present(pteval) && pte_exec(pteval))
-		flush_icache_pte(pteval);
-
-	set_pte(ptep, pteval);
-}
-
-static inline void pte_clear(struct mm_struct *mm,
-	unsigned long addr, pte_t *ptep)
-{
-	set_pte_at(mm, addr, ptep, __pte(0));
 }
 
 #define __HAVE_ARCH_PTEP_SET_ACCESS_FLAGS
@@ -410,6 +406,8 @@ static inline void pgtable_cache_init(void)
 {
 	/* No page table caches to initialize */
 }
+
+#endif /* CONFIG_MMU */
 
 #define VMALLOC_SIZE     (KERN_VIRT_SIZE >> 1)
 #define VMALLOC_END      (PAGE_OFFSET - 1)

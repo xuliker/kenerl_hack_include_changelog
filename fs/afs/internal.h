@@ -441,10 +441,7 @@ enum afs_lock_state {
 };
 
 /*
- * AFS inode private data.
- *
- * Note that afs_alloc_inode() *must* reset anything that could incorrectly
- * leak from one inode to another.
+ * AFS inode private data
  */
 struct afs_vnode {
 	struct inode		vfs_inode;	/* the VFS's inode record */

@@ -140,13 +140,11 @@ struct efi_boot_memmap {
 
 struct capsule_info {
 	efi_capsule_header_t	header;
-	efi_capsule_header_t	*capsule;
 	int			reset_type;
 	long			index;
 	size_t			count;
 	size_t			total_size;
-	struct page		**pages;
-	phys_addr_t		*phys;
+	phys_addr_t		*pages;
 	size_t			page_bytes_remain;
 };
 

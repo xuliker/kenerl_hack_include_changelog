@@ -23,7 +23,6 @@
 #define _UAPI_LINUX_IF_ETHER_H
 
 #include <linux/types.h>
-#include <linux/libc-compat.h>
 
 /*
  *	IEEE 802.3 Ethernet magic constants.  The frame sizes omit the preamble
@@ -150,13 +149,11 @@
  *	This is an Ethernet frame header.
  */
 
-#if __UAPI_DEF_ETHHDR
 struct ethhdr {
 	unsigned char	h_dest[ETH_ALEN];	/* destination eth addr	*/
 	unsigned char	h_source[ETH_ALEN];	/* source ether addr	*/
 	__be16		h_proto;		/* packet type ID field	*/
 } __attribute__((packed));
-#endif
 
 
 #endif /* _UAPI_LINUX_IF_ETHER_H */

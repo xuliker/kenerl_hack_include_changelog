@@ -7,9 +7,6 @@
 #include <asm/ptrace.h>
 #include <asm/stacktrace.h>
 
-#define IRET_FRAME_OFFSET (offsetof(struct pt_regs, ip))
-#define IRET_FRAME_SIZE   (sizeof(struct pt_regs) - IRET_FRAME_OFFSET)
-
 struct unwind_state {
 	struct stack_info stack_info;
 	unsigned long stack_mask;
@@ -55,28 +52,15 @@ void unwind_start(struct unwind_state *state, struct task_struct *task,
 }
 
 #if defined(CONFIG_UNWINDER_ORC) || defined(CONFIG_UNWINDER_FRAME_POINTER)
-/*
- * If 'partial' returns true, only the iret frame registers are valid.
- */
-static inline struct pt_regs *unwind_get_entry_regs(struct unwind_state *state,
-						    bool *partial)
+static inline struct pt_regs *unwind_get_entry_regs(struct unwind_state *state)
 {
 	if (unwind_done(state))
 		return NULL;
 
-	if (partial) {
-#ifdef CONFIG_UNWINDER_ORC
-		*partial = !state->full_regs;
-#else
-		*partial = false;
-#endif
-	}
-
 	return state->regs;
 }
 #else
-static inline struct pt_regs *unwind_get_entry_regs(struct unwind_state *state,
-						    bool *partial)
+static inline struct pt_regs *unwind_get_entry_regs(struct unwind_state *state)
 {
 	return NULL;
 }

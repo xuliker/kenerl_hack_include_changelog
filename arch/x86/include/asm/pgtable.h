@@ -28,7 +28,6 @@ extern pgd_t early_top_pgt[PTRS_PER_PGD];
 int __init __early_make_pgtable(unsigned long address, pmdval_t pmd);
 
 void ptdump_walk_pgd_level(struct seq_file *m, pgd_t *pgd);
-void ptdump_walk_pgd_level_debugfs(struct seq_file *m, pgd_t *pgd, bool user);
 void ptdump_walk_pgd_level_checkwx(void);
 
 #ifdef CONFIG_DEBUG_WX
@@ -842,12 +841,7 @@ static inline pud_t *pud_offset(p4d_t *p4d, unsigned long address)
 
 static inline int p4d_bad(p4d_t p4d)
 {
-	unsigned long ignore_flags = _KERNPG_TABLE | _PAGE_USER;
-
-	if (IS_ENABLED(CONFIG_PAGE_TABLE_ISOLATION))
-		ignore_flags |= _PAGE_NX;
-
-	return (p4d_flags(p4d) & ~ignore_flags) != 0;
+	return (p4d_flags(p4d) & ~(_KERNPG_TABLE | _PAGE_USER)) != 0;
 }
 #endif  /* CONFIG_PGTABLE_LEVELS > 3 */
 
@@ -881,12 +875,7 @@ static inline p4d_t *p4d_offset(pgd_t *pgd, unsigned long address)
 
 static inline int pgd_bad(pgd_t pgd)
 {
-	unsigned long ignore_flags = _PAGE_USER;
-
-	if (IS_ENABLED(CONFIG_PAGE_TABLE_ISOLATION))
-		ignore_flags |= _PAGE_NX;
-
-	return (pgd_flags(pgd) & ~ignore_flags) != _KERNPG_TABLE;
+	return (pgd_flags(pgd) & ~_PAGE_USER) != _KERNPG_TABLE;
 }
 
 static inline int pgd_none(pgd_t pgd)
@@ -915,11 +904,7 @@ static inline int pgd_none(pgd_t pgd)
  * pgd_offset() returns a (pgd_t *)
  * pgd_index() is used get the offset into the pgd page's array of pgd_t's;
  */
-#define pgd_offset_pgd(pgd, address) (pgd + pgd_index((address)))
-/*
- * a shortcut to get a pgd_t in a given mm
- */
-#define pgd_offset(mm, address) pgd_offset_pgd((mm)->pgd, (address))
+#define pgd_offset(mm, address) ((mm)->pgd + pgd_index((address)))
 /*
  * a shortcut which implies the use of the kernel's pgd, instead
  * of a process's
@@ -1076,7 +1061,7 @@ extern int pmdp_clear_flush_young(struct vm_area_struct *vma,
 				  unsigned long address, pmd_t *pmdp);
 
 
-#define pmd_write pmd_write
+#define __HAVE_ARCH_PMD_WRITE
 static inline int pmd_write(pmd_t pmd)
 {
 	return pmd_flags(pmd) & _PAGE_RW;
@@ -1103,12 +1088,6 @@ static inline void pmdp_set_wrprotect(struct mm_struct *mm,
 	clear_bit(_PAGE_BIT_RW, (unsigned long *)pmdp);
 }
 
-#define pud_write pud_write
-static inline int pud_write(pud_t pud)
-{
-	return pud_flags(pud) & _PAGE_RW;
-}
-
 /*
  * clone_pgd_range(pgd_t *dst, pgd_t *src, int count);
  *
@@ -1121,14 +1100,7 @@ static inline int pud_write(pud_t pud)
  */
 static inline void clone_pgd_range(pgd_t *dst, pgd_t *src, int count)
 {
-	memcpy(dst, src, count * sizeof(pgd_t));
-#ifdef CONFIG_PAGE_TABLE_ISOLATION
-	if (!static_cpu_has(X86_FEATURE_PTI))
-		return;
-	/* Clone the user space pgd as well */
-	memcpy(kernel_to_user_pgdp(dst), kernel_to_user_pgdp(src),
-	       count * sizeof(pgd_t));
-#endif
+       memcpy(dst, src, count * sizeof(pgd_t));
 }
 
 #define PTE_SHIFT ilog2(PTRS_PER_PTE)

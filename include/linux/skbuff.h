@@ -1406,7 +1406,8 @@ static inline struct sk_buff *skb_get(struct sk_buff *skb)
 }
 
 /*
- * If users == 1, we are the only owner and can avoid redundant atomic changes.
+ * If users == 1, we are the only owner and are can avoid redundant
+ * atomic change.
  */
 
 /**

@@ -805,22 +805,14 @@ static inline int pmd_trans_huge(pmd_t pmd)
 {
 	return 0;
 }
-#ifndef pmd_write
+#ifndef __HAVE_ARCH_PMD_WRITE
 static inline int pmd_write(pmd_t pmd)
 {
 	BUG();
 	return 0;
 }
-#endif /* pmd_write */
+#endif /* __HAVE_ARCH_PMD_WRITE */
 #endif /* CONFIG_TRANSPARENT_HUGEPAGE */
-
-#ifndef pud_write
-static inline int pud_write(pud_t pud)
-{
-	BUG();
-	return 0;
-}
-#endif /* pud_write */
 
 #if !defined(CONFIG_TRANSPARENT_HUGEPAGE) || \
 	(defined(CONFIG_TRANSPARENT_HUGEPAGE) && \
@@ -1025,11 +1017,6 @@ static inline int pmd_clear_huge(pmd_t *pmd)
 struct file;
 int phys_mem_access_prot_allowed(struct file *file, unsigned long pfn,
 			unsigned long size, pgprot_t *vma_prot);
-
-#ifndef CONFIG_X86_ESPFIX64
-static inline void init_espfix_bsp(void) { }
-#endif
-
 #endif /* !__ASSEMBLY__ */
 
 #ifndef io_remap_pfn_range

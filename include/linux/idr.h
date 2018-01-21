@@ -15,7 +15,6 @@
 #include <linux/radix-tree.h>
 #include <linux/gfp.h>
 #include <linux/percpu.h>
-#include <linux/bug.h>
 
 struct idr {
 	struct radix_tree_root	idr_rt;

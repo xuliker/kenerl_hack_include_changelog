@@ -708,7 +708,6 @@ struct vmbus_channel {
 	u8 monitor_bit;
 
 	bool rescind; /* got rescind msg */
-	struct completion rescind_event;
 
 	u32 ringbuffer_gpadlhandle;
 

@@ -715,7 +715,7 @@ static inline unsigned long pmd_pfn(pmd_t pmd)
 	return pte_pfn(pte);
 }
 
-#define pmd_write pmd_write
+#define __HAVE_ARCH_PMD_WRITE
 static inline unsigned long pmd_write(pmd_t pmd)
 {
 	pte_t pte = __pte(pmd_val(pmd));

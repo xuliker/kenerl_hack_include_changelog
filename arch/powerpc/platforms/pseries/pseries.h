@@ -98,6 +98,4 @@ static inline unsigned long cmo_get_page_size(void)
 	return CMO_PageSize;
 }
 
-int dlpar_workqueue_init(void);
-
 #endif /* _PSERIES_PSERIES_H */

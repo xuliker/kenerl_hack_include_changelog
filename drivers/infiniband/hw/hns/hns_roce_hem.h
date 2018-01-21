@@ -78,7 +78,6 @@ struct hns_roce_hem_chunk {
 	int			 npages;
 	int			 nsg;
 	struct scatterlist	 mem[HNS_ROCE_HEM_CHUNK_LEN];
-	void			 *buf[HNS_ROCE_HEM_CHUNK_LEN];
 };
 
 struct hns_roce_hem {

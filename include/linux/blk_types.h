@@ -50,6 +50,8 @@ struct blk_issue_stat {
 struct bio {
 	struct bio		*bi_next;	/* request queue link */
 	struct gendisk		*bi_disk;
+	u8			bi_partno;
+	blk_status_t		bi_status;
 	unsigned int		bi_opf;		/* bottom bits req flags,
 						 * top bits REQ_OP. Use
 						 * accessors.
@@ -57,8 +59,8 @@ struct bio {
 	unsigned short		bi_flags;	/* status, etc and bvec pool number */
 	unsigned short		bi_ioprio;
 	unsigned short		bi_write_hint;
-	blk_status_t		bi_status;
-	u8			bi_partno;
+
+	struct bvec_iter	bi_iter;
 
 	/* Number of segments in this BIO after
 	 * physical address coalescing is performed.
@@ -72,9 +74,8 @@ struct bio {
 	unsigned int		bi_seg_front_size;
 	unsigned int		bi_seg_back_size;
 
-	struct bvec_iter	bi_iter;
-
 	atomic_t		__bi_remaining;
+
 	bio_end_io_t		*bi_end_io;
 
 	void			*bi_private;
